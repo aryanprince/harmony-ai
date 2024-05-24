@@ -8,6 +8,12 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11.6"
+python-dotenv = "^1.0.1"
+requests = "^2.32.2"
+langchain = "^0.2.1"
+langchain-groq = "^0.1.4"
+deepgram-sdk = "^3.2.7"
+pyaudio = "^0.2.14"
 
 
 [build-system]
