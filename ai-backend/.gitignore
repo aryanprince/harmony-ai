@@ -163,3 +163,4 @@ scratch
 .DS_Store
 virtualenv-venv
 out
+.idea
