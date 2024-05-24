@@ -128,7 +128,7 @@ class LanguageModelProcessor:
         self.memory.chat_memory.add_ai_message(response["text"])
 
         elapsed_time = int((end_time - start_time) * 1000)
-        print(f"LLM ({elapsed_time}ms): {response['text']}")
+        print(f"\nLLM Response (took {elapsed_time}ms):\n{response['text']}")
         return response["text"]
 
 
@@ -182,7 +182,7 @@ class TextToSpeech:
                             (first_byte_time - start_time) * 1000
                         )  # Calculate the time to first byte
                         self.timing_manager.end()
-                        print(f"TTS Time to First Byte (TTFB): {ttfb}ms\n")
+                        print(f"\nTTS Time to First Byte (TTFB): {ttfb}ms")
                     player_process.stdin.write(chunk)
                     player_process.stdin.flush()
 
@@ -226,7 +226,9 @@ async def get_transcript(callback):
 
         dg_connection = deepgram.listen.asynclive.v("1")
 
-        print("Listening for input now...")
+        print("\n=========================================")
+        print("Listening for user input now...")
+        print("=========================================\n\n")
 
         async def on_message(self, result, **kwargs):
             sentence = result.channel.alternatives[0].transcript
@@ -241,7 +243,7 @@ async def get_transcript(callback):
                 if len(full_sentence.strip()) > 0:
                     full_sentence = full_sentence.strip()
                     # start_time = time.time()
-                    print(f"Human: {full_sentence}")
+                    print(f"User Transcript: \n{full_sentence}")
                     callback(full_sentence)  # Call the callback with the full_sentence
                     transcript_collector.reset()
                     transcription_complete.set()  # Signal to stop transcription and exit
@@ -309,7 +311,7 @@ class ConversationManager:
             total_time = timing_manager.total_time()
 
             if total_time is not None:
-                print("Total time taken:", total_time)
+                print("Total round-trip time (RTT):", total_time, "\n")
             else:
                 print("Timing data is incomplete.")
 
