@@ -164,3 +164,4 @@ scratch
 virtualenv-venv
 out
 .idea
+.run
