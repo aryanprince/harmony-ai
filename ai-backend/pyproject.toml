@@ -1,9 +1,8 @@
 [tool.poetry]
-name = "quickagent"
-version = "0.1.0"
-description = ""
-authors = ["Aryan Prince <aryanprincesanty@icloud.com>"]
-readme = "README.md"
+name = "harmony-ai"
+version = "0.1.1"
+description = "A conversation AI chatbot for mental health, designed to provide support and act as a virtual therapist."
+authors = ["Aryan Prince <hello@aryanprince.com>"]
 package-mode = false
 
 [tool.poetry.dependencies]
