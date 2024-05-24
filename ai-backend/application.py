@@ -10,7 +10,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import (
-    ChatPromptTemplate,
     MessagesPlaceholder,
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
@@ -85,7 +84,7 @@ class LanguageModelProcessor:
         )
 
         # Fetch the system prompt from the system_prompt.txt file
-        with open("system-prompt.txt", "r") as file:
+        with open("src/system-prompt.txt", "r") as file:
             system_prompt = file.read().strip()
 
         # Create the chat prompt template with the system prompt, chat history, and human message
@@ -116,19 +115,17 @@ class LanguageModelProcessor:
         - str: The generated response from the language model.
         """
         # Adds the user message to the conversation memory for chat history
-        self.memory.chat_memory.add_user_message(text) 
+        self.memory.chat_memory.add_user_message(text)
 
         # Record the time before sending the request
         start_time = time.time()
 
         # Generate a response from the LLaMA 3 8B language model
         response = self.conversation.invoke({"text": text})
-        end_time = time.time() # Record the time after receiving the response
+        end_time = time.time()  # Record the time after receiving the response
 
         # Adds the AI response to the conversation memory for chat history
-        self.memory.chat_memory.add_ai_message(
-            response["text"]
-        ) 
+        self.memory.chat_memory.add_ai_message(response["text"])
 
         elapsed_time = int((end_time - start_time) * 1000)
         print(f"LLM ({elapsed_time}ms): {response['text']}")
@@ -243,7 +240,7 @@ async def get_transcript(callback):
                 # Check if the full_sentence is not empty before printing
                 if len(full_sentence.strip()) > 0:
                     full_sentence = full_sentence.strip()
-                    start_time = time.time()
+                    # start_time = time.time()
                     print(f"Human: {full_sentence}")
                     callback(full_sentence)  # Call the callback with the full_sentence
                     transcript_collector.reset()
