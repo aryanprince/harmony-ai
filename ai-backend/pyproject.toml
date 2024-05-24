@@ -14,6 +14,7 @@ langchain-groq = "^0.1.4"
 deepgram-sdk = "^3.2.7"
 pyaudio = "^0.2.14"
 prettytable = "^3.10.0"
+elevenlabs = "^1.2.2"
 
 
 [build-system]
